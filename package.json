@@ -4,7 +4,9 @@
   "description": "Intro to React with Redux",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
-    "start": "babel-node tools/srcServer.js"
+    "start": "babel-node tools/srcServer.js",
+    "lint": "node_modules/.bin/esw webpack.config.* src tools",
+    "lint:watch": "npm run list -- --watch"
   },
   "dependencies": {
     "babel-polyfill": "6.8.0",
