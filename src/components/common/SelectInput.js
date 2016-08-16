@@ -28,7 +28,7 @@ SelectInput.propTypes = {
 	defaultOption: PropTypes.string,
 	value: PropTypes.string,
 	error: PropTypes.string,
-	options: propTypes.arrayof(PropTypes.object)
+	options: PropTypes.arrayOf(PropTypes.object)
 };
 
-export defalt SelectInput;
+export default SelectInput;
