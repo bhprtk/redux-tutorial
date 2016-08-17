@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
- 
+
 
 class ManageCoursePage extends React.Component {
 	constructor(props, context) {
@@ -57,7 +57,19 @@ ManageCoursePage.contextTypes = {
 	router: PropTypes.object
 };
 
+function getCourseById(courses, id) {
+  const course = courses.filter(course => course.id == id);
+  if(course) return course[0]; //since filter returns an array, have to grab the first.
+  return null;
+}
+
 function mapStateToProps(state, ownProps) {
+
+  const courseId = ownProps.params.id; // form the path `/course/:id`
+
+  if(courseId && state.courses.length > 0) {
+    course = getCourseById(state.courses, courseId);
+  }
 	let course = {
 		id: '',
 		watchHref: '',
@@ -66,6 +78,10 @@ function mapStateToProps(state, ownProps) {
 		length: '',
 		category: ''
 	};
+
+  if(courseId) {
+    course = getCourseById(state.courses, courseId)
+  }
 
 	const authorsFormattedForDropdown = state.authors.map(author => {
 		return {
