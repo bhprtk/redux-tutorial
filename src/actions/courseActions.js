@@ -8,7 +8,7 @@ export function loadCoursesSuccess(courses) {
 	};
 }
 
-export function createCoursesSuccess(course) {
+export function createCourseSuccess(course) {
 	return {
 		type: types.CREATE_COURSE_SUCCESS,
 		course
