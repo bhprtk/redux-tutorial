@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
+ 
 
 class ManageCoursePage extends React.Component {
 	constructor(props, context) {
@@ -27,9 +28,12 @@ class ManageCoursePage extends React.Component {
 	saveCourse(event) {
 		event.preventDefault();
 		this.props.actions.saveCourse(this.state.course);
+		this.context.router.push('/courses');
 	}
 
 	render() {
+
+
 		return (
 			<CourseForm
 				allAuthors={this.props.authors}
@@ -46,6 +50,11 @@ ManageCoursePage.propTypes = {
 	course: PropTypes.object.isRequired,
 	authors: PropTypes.array.isRequired,
 	actions: PropTypes.object.isRequired
+};
+
+//PUll in the React Router context so router is available on this.context.router
+ManageCoursePage.contextTypes = {
+	router: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
