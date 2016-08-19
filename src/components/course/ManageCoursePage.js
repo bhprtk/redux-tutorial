@@ -8,7 +8,8 @@ import CourseForm from './CourseForm';
 class ManageCoursePage extends React.Component {
 	constructor(props, context) {
 		super(props, context);
-
+    console.log('props', props);
+    console.log('this.props', this.props);
 		this.state = {
 			course: Object.assign({}, this.props.course),
 			errors: {}
@@ -17,6 +18,15 @@ class ManageCoursePage extends React.Component {
 		this.updateCourseState = this.updateCourseState.bind(this);
 		this.saveCourse = this.saveCourse.bind(this);
 	}
+
+  componentWillReceiveProps(nextProps) {
+    console.log('this.props', this.props);
+    console.log('nextProps', nextProps);
+    // if(this.props.course.id != nextProps.course.id) {
+    //   // Necessary to populate form when existing course is loaded directly.
+    //   this.setState({course: Object.assign({}, nextProps.course)});
+    // }
+  }
 
 	updateCourseState(event) {
 		const field = event.target.name;
