@@ -8,8 +8,6 @@ import CourseForm from './CourseForm';
 class ManageCoursePage extends React.Component {
 	constructor(props, context) {
 		super(props, context);
-    console.log('props', props);
-    console.log('this.props', this.props);
 		this.state = {
 			course: Object.assign({}, this.props.course),
 			errors: {}
@@ -20,12 +18,10 @@ class ManageCoursePage extends React.Component {
 	}
 
   componentWillReceiveProps(nextProps) {
-    console.log('this.props', this.props);
-    console.log('nextProps', nextProps);
-    // if(this.props.course.id != nextProps.course.id) {
-    //   // Necessary to populate form when existing course is loaded directly.
-    //   this.setState({course: Object.assign({}, nextProps.course)});
-    // }
+    if(this.props.course.id != nextProps.course.id) {
+      // Necessary to populate form when existing course is loaded directly.
+      this.setState({course: Object.assign({}, nextProps.course)});
+    }
   }
 
 	updateCourseState(event) {
@@ -77,9 +73,6 @@ function mapStateToProps(state, ownProps) {
 
   const courseId = ownProps.params.id; // form the path `/course/:id`
 
-  if(courseId && state.courses.length > 0) {
-    course = getCourseById(state.courses, courseId);
-  }
 	let course = {
 		id: '',
 		watchHref: '',
@@ -89,7 +82,7 @@ function mapStateToProps(state, ownProps) {
 		category: ''
 	};
 
-  if(courseId) {
+  if(courseId && state.courses.length > 0) {
     course = getCourseById(state.courses, courseId)
   }
 

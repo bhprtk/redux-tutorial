@@ -10,3 +10,5 @@ export default function authorReducer(state = initialState.authors, action) {
 			return state;
 	}
 }
+
+ 
