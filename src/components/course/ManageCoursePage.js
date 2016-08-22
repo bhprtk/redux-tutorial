@@ -83,7 +83,7 @@ function mapStateToProps(state, ownProps) {
 	};
 
   if(courseId && state.courses.length > 0) {
-    course = getCourseById(state.courses, courseId)
+    course = getCourseById(state.courses, courseId);
   }
 
 	const authorsFormattedForDropdown = state.authors.map(author => {
